@@ -720,8 +720,8 @@
         <div class="num-label">Average CCU during active period</div>
       </div>
       <div class="num-card">
-        <div class="num-big">2</div>
-        <div class="num-label">Roblox games shipped with my QA</div>
+        <div class="num-big">1</div>
+        <div class="num-label">Roblox game shipped with my QA</div>
       </div>
       <div class="num-card">
         <div class="num-big">100+</div>
@@ -779,46 +779,6 @@
             <div class="peak-label">Peak CCU</div>
           </div>
           <a class="game-link" href="https://www.roblox.com/games/71249794780202/Crawl-for-Brainrot" target="_blank" rel="noopener">
-            View on Roblox
-            <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M2.5 11.5L11.5 2.5M11.5 2.5H5.5M11.5 2.5V8.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <div class="game-card reveal" data-placeid="71919479906458" style="margin-top: 32px;">
-      <div class="game-thumb-wrap">
-        <img class="game-thumb" src="drop.png" alt="Drop For Brainrots"
-          onerror="this.style.background='#1a1a24';this.removeAttribute('src')" />
-        <div class="game-thumb-overlay"></div>
-      </div>
-      <div class="game-body">
-        <div class="game-header-row">
-          <span class="game-num">GAME — 02</span>
-          <span class="game-badge">Live</span>
-        </div>
-        <div class="game-title">DROP FOR BRAINROTS!</div>
-        <div class="live-row">
-          <span class="live-dot"></span>
-          Playing now:&nbsp;<strong id="live-71919479906458">—</strong>
-        </div>
-        <p class="game-desc">
-          A fast-paced drop-style Roblox experience built around the Brainrot universe. I handled full QA coverage — testing drop mechanics, timing windows, item spawning logic, and multiplayer edge cases to make sure the experience holds up under real player pressure from day one.
-        </p>
-        <div class="game-tags">
-          <span class="game-tag">Functional Testing</span>
-          <span class="game-tag">Drop Mechanics</span>
-          <span class="game-tag">Bug Reporting</span>
-          <span class="game-tag">Multiplayer QA</span>
-          <span class="game-tag">Edge Cases</span>
-          <span class="game-tag">Live Game</span>
-        </div>
-        <div class="game-footer">
-          <div class="peak-stat">
-            <div class="peak-num">—</div>
-            <div class="peak-label">Peak CCU</div>
-          </div>
-          <a class="game-link" href="https://www.roblox.com/games/71919479906458/Drop-For-Brainrots" target="_blank" rel="noopener">
             View on Roblox
             <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M2.5 11.5L11.5 2.5M11.5 2.5H5.5M11.5 2.5V8.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
@@ -904,14 +864,14 @@
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    const placeIds = ['71249794780202', '71919479906458'];
+    const placeId = '71249794780202';
 
     function formatNum(n) {
       if (n >= 1000) return (n / 1000).toFixed(1).replace(/\.0$/, '') + 'k';
       return n.toLocaleString();
     }
 
-    async function fetchPlayersForPlace(placeId) {
+    async function fetchPlayers() {
       try {
         const uRes = await fetch(`https://apis.roproxy.com/universes/v1/places/${placeId}/universe`);
         if (!uRes.ok) throw new Error();
@@ -925,10 +885,6 @@
         const el = document.getElementById('live-' + placeId);
         if (el) el.textContent = '—';
       }
-    }
-
-    function fetchPlayers() {
-      placeIds.forEach(fetchPlayersForPlace);
     }
 
     fetchPlayers();
